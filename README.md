@@ -1,1 +1,1 @@
-# terraform-aws-nightscout
+# Deploy Nightscout in AWS by using Terraform
