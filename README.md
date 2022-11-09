@@ -6,7 +6,9 @@ The Nightscout image is from my [Docker Repo](https://hub.docker.com/r/51rspasov
 
 # Prerequisite
 [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) >= v1.3.1 installed on you workstation. 
+
 [MongoDB](cloud.mongodb.com) instance with M0 sandbox (The Free tier)
+
 [AWS Account](aws.amazon.com) 
 
 # How to use the repo
