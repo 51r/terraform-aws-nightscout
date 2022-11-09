@@ -1,6 +1,6 @@
 # Deploy Nightscout in AWS by using Terraform
 
-This repo can be used to deploy immutable Nightscout Docker container in T2.nano EC2 instance by using Terraform automation. 
+This repo can be used to deploy immutable Nightscout Docker container in t2.nano EC2 instance by using Terraform automation. 
 
 The Nightscout image is from my [Docker Repo](https://hub.docker.com/r/51rspasov/cgm-nightscout) and it contains modified Nightscout version [14.2.6](https://github.com/nightscout/cgm-remote-monitor/releases/tag/14.2.6) for easy AWS deployment.
 
