@@ -1,15 +1,13 @@
 # Deploy Nightscout in AWS by using Terraform
 
-This repo contains Terraform configuration the following Terraform configuration:
+This repo can be used to deploy immutable Nightscout Docker container in T2.nano EC2 instance by using Terraform automation. 
 
-* Deployes Nightscout in AWS EC2 t2.nano instance
-* Issues Free letsencrypt certificate 5 minutes after the Terraform apply phase is finished.
-
+The Nightscout image is from my [Docker Repo](https://hub.docker.com/r/51rspasov/cgm-nightscout) and it contains modified Nightscout version [14.2.6](https://github.com/nightscout/cgm-remote-monitor/releases/tag/14.2.6) for easy AWS deployment.
 
 # Prerequisite
-[Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) >= 0.12 installed on you workstation. 
+[Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) >= v1.3.1 installed on you workstation. 
 [MongoDB](cloud.mongodb.com) instance with M0 sandbox (The Free tier)
-[AWS Account](aws.amazon.com)
+[AWS Account](aws.amazon.com) 
 
 # How to use the repo
 
@@ -17,21 +15,28 @@ This repo contains Terraform configuration the following Terraform configuration
 ```
 git clone https://github.com/51r/terraform-aws-nightscout.git
 ```
+
 * Make sure you are in the main directory of the repo:
 
 ```
 cd terraform-aws-nightscout
 ```
+
 * Make sure you have allowed Terraform to access your IAM user credentials, set your AWS access key ID as an environment variable
 ```
 export AWS_ACCESS_KEY_ID="<YOUR_AWS_ACCESS_KEY_ID>"
 ```
+
 * Then set your secret key:
 ```
 export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
 ```
 
-# Modify the init.sh script file:
+# Configuration:
+
+Mandatory:
+
+Modify the init.sh script file:
 
 1. Under #Configuring NginX reverse proxy, you have to specify your domain:
 
@@ -58,6 +63,22 @@ In case you want to use it with Shuggah, you will need to issue a SSL certificat
 ```
 
 If you need more time, you can adjust the sleep command to more or less seconds. I have configured my subdomain TTL to be 1 minute, and it propagates for less than 5 minutes and it is enough for me.
+
+Optional:
+
+If you wish you can modify the region in which the EC2 instance will be deployed. I have used eu-central-1 (Frankfurt) as it is closest to me. Keep in mind that if you change the AWS Region, you will need to supply new AMI, that is available in the region.
+
+# Deployment:
+
+* Initialize the Terraform:
+```
+terraform init
+```
+
+You should see the following message:
+```
+Terraform has been successfully initialized!
+```
 
 * Apply the plan which terraform is going to execute based on our configuration
 ```
