@@ -1,11 +1,11 @@
 # Deploy Nightscout in AWS by using Terraform
 
-This repo can be used to deploy immutable Nightscout Docker container in t2.nano EC2 instance by using Terraform automation. 
+This repo can be used to deploy an immutable Nightscout Docker container in t2.nano EC2 instance by using Terraform automation. 
 
 The Nightscout image is from my [Docker Repo](https://hub.docker.com/r/51rspasov/cgm-nightscout) and it contains modified Nightscout version [14.2.6](https://github.com/nightscout/cgm-remote-monitor/releases/tag/14.2.6) for easy AWS deployment.
 
 # Prerequisite
-[Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) >= v1.3.1 installed on you workstation. 
+[Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) >= v1.3.1 installed on your workstation. 
 
 [MongoDB](cloud.mongodb.com) instance with M0 sandbox (The Free tier)
 
@@ -40,7 +40,7 @@ Mandatory:
 
 Modify the init.sh script file:
 
-1. Under #Configuring NginX reverse proxy, you have to specify your domain:
+1. Under #Configuring Nginx reverse proxy, you have to specify your domain:
 
 	server_name cgm.example.com;
   
@@ -58,17 +58,17 @@ The MONGODB_URI should be something similar:
 
 IMPORTANT:
 
-In case you want to use it with Shuggah, you will need to issue a SSL certificate, which can be done for free by LetsEncrypt. I have included a script in the configuration, that automatically issues certificate after 5 minutes (300 seconds). You only need to replace your-domain (e.g. domain.com) to the command:
+In case you want to use it with Shuggah, you will need to issue an SSL certificate, which can be done for free by LetsEncrypt. I have included a script in the configuration, that automatically issues a certificate after 5 minutes (300 seconds). You only need to replace your-domain (e.g. domain.com) in the command:
 
 ```
 (sleep 300; echo 'Triggering certbot' ; sudo certbot --nginx --register-unsafely-without-email --agree-tos -n  -d your-domain)  &
 ```
 
-If you need more time, you can adjust the sleep command to more or less seconds. I have configured my subdomain TTL to be 1 minute, and it propagates for less than 5 minutes and it is enough for me.
+If you need more time, you can adjust the sleep command to more or fewer seconds. I have configured my subdomain TTL to be 1 minute, and it propagates for less than 5 minutes and it is enough for me.
 
 Optional:
 
-If you wish you can modify the region in which the EC2 instance will be deployed. I have used eu-central-1 (Frankfurt) as it is closest to me. Keep in mind that if you change the AWS Region, you will need to supply new AMI, that is available in the region.
+If you wish you can modify the region in which the EC2 instance will be deployed. I have used eu-central-1 (Frankfurt) as it is closest to me. Keep in mind that if you change the AWS Region, you will need to supply a new AMI, that is available in the region.
 
 # Deployment:
 
@@ -87,8 +87,8 @@ Terraform has been successfully initialized!
 terraform apply
 ```
 
-* Terraform will output your public-ip. Use it to enter it as an A record to your DNS records, you have 5 minutes to do it, since the LE certbot will be triggered and will issue the certificate, so you can use the Nightscout over HTTPS(443 port).
+* Terraform will output your Public IP. Use it to enter it as an A record to your DNS records, you have 5 minutes to do it, since the LE certbot will be triggered and will issue the certificate, so you can use the Nightscout over HTTPS(443 port).
 
 # QA:
 
-Do not hesitate to open a Issue in the repo if you have questions or you have troubles with the installation. 
+Do not hesitate to open an issue in the repo if you have questions or you have troubles with the installation. 
