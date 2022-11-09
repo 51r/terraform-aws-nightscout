@@ -36,7 +36,7 @@ export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
 
 # Configuration:
 
-Mandatory:
+**Mandatory:**
 
 Modify the init.sh script file:
 
@@ -56,7 +56,7 @@ The MONGODB_URI should be something similar:
 "MONGODB_URI=mongodb+srv://user:password@your-cluster.mongodb.net/database-name?retryWrites=true&w=majority"
 ```
 
-IMPORTANT:
+**IMPORTANT**:
 
 In case you want to use it with Shuggah, you will need to issue an SSL certificate, which can be done for free by LetsEncrypt. I have included a script in the configuration, that automatically issues a certificate after 5 minutes (300 seconds). You only need to replace your-domain (e.g. domain.com) in the command:
 
