@@ -1,7 +1,6 @@
 terraform {
   required_providers {
     aws = {
-      version = ">= 4.18.0"
       source  = "hashicorp/aws"
     }
   }
@@ -53,7 +52,7 @@ resource "aws_security_group" "ns" {
 
 resource "aws_instance" "nightscout" {
   ami                         = var.ami
-  instance_type               = "t2.nano"
+  instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.ns.id]
   associate_public_ip_address = true
   user_data                   = file("init.sh")
