@@ -58,7 +58,7 @@ The MONGODB_URI should be something similar:
 
 **IMPORTANT**:
 
-In case you want to use it with Shuggah, you will need to issue an SSL certificate, which can be done for free by LetsEncrypt. I have included a script in the configuration, that automatically issues a certificate after 5 minutes (300 seconds). You only need to replace your-domain (e.g. domain.com) in the command:
+In case you want to use it with Shuggah, you will need to issue an SSL certificate, which can be done for free by LetsEncrypt. I have included a script in the configuration, that automatically issues a certificate after 5 minutes (300 seconds). You only need to replace your-domain (e.g. domain.com) in the command in the init.sh script file :
 
 ```
 (sleep 300; echo 'Triggering certbot' ; sudo certbot --nginx --register-unsafely-without-email --agree-tos -n  -d your-domain)  &
